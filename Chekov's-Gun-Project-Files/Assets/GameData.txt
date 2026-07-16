@@ -1,0 +1,7 @@
+Wins:
+Losses:
+Cards Played:
+Eyes:
+Eye Color:
+Hat:
+Death Animation:
