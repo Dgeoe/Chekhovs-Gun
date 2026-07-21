@@ -1,6 +1,5 @@
+using NUnit.Framework.Constraints;
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +15,7 @@ public class DeckLogic : MonoBehaviour
     public List<CardTypes> cardTypes = new();
     [SerializeField] private List<CardTypes> currentDeck = new();
     private byte[] howMany;
+    public CardTypes Gun;
 
     private void Awake()
     {
@@ -54,8 +54,21 @@ public class DeckLogic : MonoBehaviour
 
     void Start()
     {
-        //increase deck by 1 add gun and move rest down 
+        //increase deck by 1, move rest down, add gun 
         gunCard = UnityEngine.Random.Range(1, deck);
+
+        for (int i = deck; gunCard < i; i --)
+        {
+
+            if (i == deck) currentDeck.Add(currentDeck[i - 1]);
+            else currentDeck[i - 1] = currentDeck[i]; 
+        }
+
+        Gun.cardName = "Gun";
+        Gun.occurance = 1;
+        Gun.ability = "Ends Game";
+
+        currentDeck[gunCard - 1] = Gun;
     }
 
     public void howFar()
@@ -79,17 +92,12 @@ public class DeckLogic : MonoBehaviour
         OpponentLogic.instance.EnemyTurn();
     }
 
-    private bool isNull(CardTypes ct)
-    {
-        if (ct == null) return true;
-        else return false;
-    }
-
     [Serializable]
     public class CardTypes
     {
         [Header("Card Info")]
         public string cardName;
         public int occurance;
+        public string ability;
     }
 }

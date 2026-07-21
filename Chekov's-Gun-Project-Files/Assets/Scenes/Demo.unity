@@ -270,32 +270,43 @@ MonoBehaviour:
   cardTypes:
   - cardName: 1
     occurance: 4
+    ability: 
   - cardName: 2
     occurance: 4
+    ability: 
   - cardName: 3
     occurance: 4
+    ability: 
   - cardName: 4
     occurance: 4
+    ability: 
   - cardName: 5
     occurance: 4
+    ability: 
   - cardName: 6
     occurance: 4
+    ability: 
   - cardName: 7
     occurance: 4
+    ability: 
   - cardName: 8
     occurance: 4
+    ability: 
   - cardName: 9
     occurance: 4
+    ability: 
   - cardName: 10
     occurance: 4
+    ability: 
   - cardName: Jack
     occurance: 4
+    ability: 
   - cardName: Queen
     occurance: 4
+    ability: 
   - cardName: King
     occurance: 4
-  - cardName: Gun
-    occurance: 1
+    ability: 
   currentDeck: []
 --- !u!4 &205031881
 Transform:
