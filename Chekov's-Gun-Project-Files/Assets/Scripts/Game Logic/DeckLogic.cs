@@ -1,7 +1,9 @@
-using NUnit.Framework.Constraints;
 using System;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class DeckLogic : MonoBehaviour
 {
@@ -13,11 +15,14 @@ public class DeckLogic : MonoBehaviour
 
     [Header("Card Types")]
     public List<CardTypes> cardTypes = new();
+    [ReadOnly] public CardTypes Gun;
     [SerializeField] private List<CardTypes> currentDeck = new();
     private byte[] howMany;
-    public CardTypes Gun;
 
-    private void Awake()
+    [Header("UI")]
+    [SerializeField] private TextMeshPro GunCardPosDisplay;
+
+    void Awake()
     {
         if (instance == null) instance = this;
 
@@ -57,47 +62,24 @@ public class DeckLogic : MonoBehaviour
         //increase deck by 1, move rest down, add gun 
         gunCard = UnityEngine.Random.Range(1, deck);
 
-        for (int i = deck; gunCard < i; i --)
+        for (int i = deck; gunCard < i; i--)
         {
 
             if (i == deck) currentDeck.Add(currentDeck[i - 1]);
-            else currentDeck[i - 1] = currentDeck[i]; 
+            else currentDeck[i - 1] = currentDeck[i];
         }
 
         Gun.cardName = "Gun";
         Gun.occurance = 1;
         Gun.ability = "Ends Game";
 
-        currentDeck[gunCard - 1] = Gun;
+        currentDeck[gunCard] = Gun;
+
+        DisplayGunCardPos();
     }
 
-    public void howFar()
+    public void DisplayGunCardPos()
     {
-        int distance = gunCard - currentDeckPos;
-        Debug.Log("Gun is at " + gunCard);
-        Debug.Log("Which is " + distance + " Cards Down");
-    }
-
-    public void takeCard()
-    {
-        if (TurnCounter.instance.player1 == false) return;
-
-        currentDeckPos++;
-        if (currentDeckPos == gunCard)
-        {
-            Debug.Log("Win");
-        }
-
-        TurnCounter.instance.player1 = false;
-        OpponentLogic.instance.EnemyTurn();
-    }
-
-    [Serializable]
-    public class CardTypes
-    {
-        [Header("Card Info")]
-        public string cardName;
-        public int occurance;
-        public string ability;
+        GunCardPosDisplay.text = "" + (gunCard - currentDeckPos);
     }
 }
