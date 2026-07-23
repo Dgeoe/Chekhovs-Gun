@@ -16,7 +16,7 @@ public class DeckLogic : MonoBehaviour
     [Header("Card Types")]
     public List<CardTypes> cardTypes = new();
     [ReadOnly] public CardTypes Gun;
-    [SerializeField] private List<CardTypes> currentDeck = new();
+    [SerializeField] public List<CardTypes> currentDeck = new();
     private byte[] howMany;
 
     [Header("UI")]
