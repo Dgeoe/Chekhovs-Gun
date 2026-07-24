@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static DeckLogic;
 
 public class PlayerHand : MonoBehaviour
 {
@@ -14,26 +13,35 @@ public class PlayerHand : MonoBehaviour
 
     public void TakeCard()
     {
-        if (!yourTurn) return;
+        if (!yourTurn || DeckLogic.instance.currentDeck.Count == 0) return;
 
         currentHand.Add(DeckLogic.instance.currentDeck[0]);
         DeckLogic.instance.currentDeck.RemoveAt(0);
         Instantiate(cardPrefab, cardStartPos.position + (cardOffset * currentHand.Count), cardStartPos.rotation, cardStartPos);
+
+        UpdateDisplay();
     }
 
     public void PlayCard()
     {
+        if (currentHand.Count == 0) return;
 
-    }
+        Debug.Log(currentHand[0].ability);
+        currentHand.RemoveAt(0);
 
-    private void ScrollHand()
-    {
-
+        UpdateDisplay();
     }
 
     public void EndTurn()
     {
 
+    }
+
+    private void UpdateDisplay()
+    {
+        //Update GunCardPos
+        DeckLogic.instance.currentDeckPos++;
+        DeckLogic.instance.DisplayGunCardPos();
     }
 
 }

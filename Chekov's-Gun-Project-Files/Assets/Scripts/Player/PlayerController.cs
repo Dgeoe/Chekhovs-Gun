@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (hit.transform.gameObject.CompareTag("PlayButton"))
             {
-                return;
+                playerHand.PlayCard();
             }
             else if (hit.transform.gameObject.CompareTag("EndButton"))
             {
@@ -50,5 +50,10 @@ public class PlayerController : MonoBehaviour
             }
             else return;
         }
+    }
+
+    private void ScrollHand()
+    {
+
     }
 }
