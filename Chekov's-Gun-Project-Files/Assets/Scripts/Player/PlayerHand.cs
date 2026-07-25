@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class PlayerHand : MonoBehaviour
 {
-    public bool yourTurn;
+    public bool yourTurn = false;
+    private bool taken = false;
+    private bool played = false;
     [SerializeField] private List<CardTypes> currentHand = new();
 
     [Header("Card Designs")]
@@ -13,35 +15,44 @@ public class PlayerHand : MonoBehaviour
 
     public void TakeCard()
     {
-        if (!yourTurn || DeckLogic.instance.currentDeck.Count == 0) return;
+        if (!yourTurn || taken || DeckLogic.instance.currentDeck.Count == 0) return;
 
         currentHand.Add(DeckLogic.instance.currentDeck[0]);
         DeckLogic.instance.currentDeck.RemoveAt(0);
         Instantiate(cardPrefab, cardStartPos.position + (cardOffset * currentHand.Count), cardStartPos.rotation, cardStartPos);
 
+        DeckLogic.instance.currentDeckPos++;
         UpdateDisplay();
+        taken = true;
     }
 
     public void PlayCard()
     {
-        if (currentHand.Count == 0) return;
+        if (!yourTurn || played || currentHand.Count == 0) return;
 
         Debug.Log(currentHand[0].ability);
         currentHand.RemoveAt(0);
 
         UpdateDisplay();
+        played = true;
     }
 
     public void EndTurn()
     {
-
+        TurnCounter.instance.checkTurn();
     }
 
     private void UpdateDisplay()
     {
         //Update GunCardPos
-        DeckLogic.instance.currentDeckPos++;
         DeckLogic.instance.DisplayGunCardPos();
     }
 
+    public void NowsYourChance()
+    {
+        yourTurn = true;
+        taken = false;
+        played = false;
+    }
 }
+

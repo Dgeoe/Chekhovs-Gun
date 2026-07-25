@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (hit.transform.gameObject.CompareTag("EndButton"))
             {
-                return;
+                playerHand.EndTurn();
             }
             else return;
         }

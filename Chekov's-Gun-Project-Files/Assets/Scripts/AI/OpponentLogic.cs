@@ -1,22 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class OpponentLogic : MonoBehaviour
 {
-    public static OpponentLogic instance;
+    [SerializeField] private List<CardTypes> currentHand = new();
 
-    private void Awake()
+    [Header("Card Designs")]
+    [SerializeField] private Transform cardStartPos;
+    [SerializeField] private GameObject cardPrefab;
+    private Vector3 cardOffset = new Vector3((float)-0.24, (float)0.05, (float)0.09);
+
+    public void EnemyTake()
     {
-        if (instance == null) instance = this;
-    }
-    public void EnemyTurn()
-    {
-        if (TurnCounter.instance.player1) return;
+        if (DeckLogic.instance.currentDeck.Count == 0) return;
+
+        currentHand.Add(DeckLogic.instance.currentDeck[0]);
+        DeckLogic.instance.currentDeck.RemoveAt(0);
+        Instantiate(cardPrefab, cardStartPos.position + (cardOffset * currentHand.Count), cardStartPos.rotation, cardStartPos);
 
         DeckLogic.instance.currentDeckPos++;
-        if (DeckLogic.instance.currentDeckPos == DeckLogic.instance.gunCard)
-        {
-            Debug.Log("Lose");
-        }
-        TurnCounter.instance.player1 = true;
+        UpdateDisplay();
+        TurnCounter.instance.checkTurn();
+    }
+
+    private void UpdateDisplay()
+    {
+        //Update GunCardPos
+        DeckLogic.instance.DisplayGunCardPos();
     }
 }
