@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class DeckLogic : MonoBehaviour
 {
@@ -45,7 +43,7 @@ public class DeckLogic : MonoBehaviour
             int choice = UnityEngine.Random.Range(0, cardTypes.Count);
 
             //check occurance against how many are currently in list
-            if (howMany[choice] <= cardTypes[choice].occurance)
+            if (howMany[choice] < cardTypes[choice].occurance)
             {
                 //if good then assign to lowest unfilled position in currentDeck
                 currentDeck.Add(cardTypes[choice]);
@@ -59,27 +57,22 @@ public class DeckLogic : MonoBehaviour
 
     void Start()
     {
-        //increase deck by 1, move rest down, add gun 
-        gunCard = UnityEngine.Random.Range(1, deck);
-
-        for (int i = deck; gunCard < i; i--)
-        {
-
-            if (i == deck) currentDeck.Add(currentDeck[i - 1]);
-            else currentDeck[i - 1] = currentDeck[i];
-        }
-
+        //increase deck by 1, move rest down, add gun
         Gun.cardName = "Gun";
         Gun.occurance = 1;
         Gun.ability = "Ends Game";
 
         currentDeck[gunCard] = Gun;
 
+        gunCard = Random.Range(0, currentDeck.Count + 1);
+        currentDeck.Insert(gunCard, Gun);
+
         DisplayGunCardPos();
     }
 
     public void DisplayGunCardPos()
     {
+        if (gunCard - currentDeckPos < 0) GunCardPosDisplay.gameObject.SetActive(false);
         GunCardPosDisplay.text = "" + (gunCard - currentDeckPos);
     }
 }
