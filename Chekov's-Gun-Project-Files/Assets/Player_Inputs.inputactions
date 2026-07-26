@@ -34,13 +34,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Scroll",
-                    "type": "Button",
-                    "id": "146af0a3-f97c-411e-828b-a874da9e8ef7",
-                    "expectedControlType": "",
+                    "name": "BrowseDeck",
+                    "type": "Value",
+                    "id": "02e9459f-e318-4fec-8dc7-a76a4dc2fe2e",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -233,12 +233,56 @@
                 },
                 {
                     "name": "",
-                    "id": "47d83a8f-45c2-4cdf-8f9d-a491f677094c",
-                    "path": "<Mouse>/middleButton",
+                    "id": "3e30e2c0-fd8f-478c-abf5-f0052dd109fa",
+                    "path": "<Mouse>/scroll/y",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Scale",
                     "groups": "",
-                    "action": "Scroll",
+                    "action": "BrowseDeck",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5dc96af-2672-45de-a9ed-55117e82d10f",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "Scale(factor=-1)",
+                    "groups": "",
+                    "action": "BrowseDeck",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b6c93b7-cc68-421f-b87b-b63f31c232b1",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "Scale(factor=-1)",
+                    "groups": "",
+                    "action": "BrowseDeck",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c13aa19-a151-4974-b8ed-c72c9bab2021",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": ";Gamepad",
+                    "action": "BrowseDeck",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5cfe1487-de4d-4fd8-b63a-e2888dbffeb2",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "Scale(factor=-1)",
+                    "groups": "",
+                    "action": "BrowseDeck",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

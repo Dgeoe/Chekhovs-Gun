@@ -120,13 +120,13 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Scroll"",
-                    ""type"": ""Button"",
-                    ""id"": ""146af0a3-f97c-411e-828b-a874da9e8ef7"",
-                    ""expectedControlType"": """",
+                    ""name"": ""BrowseDeck"",
+                    ""type"": ""Value"",
+                    ""id"": ""02e9459f-e318-4fec-8dc7-a76a4dc2fe2e"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -319,12 +319,56 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""47d83a8f-45c2-4cdf-8f9d-a491f677094c"",
-                    ""path"": ""<Mouse>/middleButton"",
+                    ""id"": ""3e30e2c0-fd8f-478c-abf5-f0052dd109fa"",
+                    ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Scale"",
                     ""groups"": """",
-                    ""action"": ""Scroll"",
+                    ""action"": ""BrowseDeck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5dc96af-2672-45de-a9ed-55117e82d10f"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=-1)"",
+                    ""groups"": """",
+                    ""action"": ""BrowseDeck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b6c93b7-cc68-421f-b87b-b63f31c232b1"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=-1)"",
+                    ""groups"": """",
+                    ""action"": ""BrowseDeck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c13aa19-a151-4974-b8ed-c72c9bab2021"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""BrowseDeck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5cfe1487-de4d-4fd8-b63a-e2888dbffeb2"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=-1)"",
+                    ""groups"": """",
+                    ""action"": ""BrowseDeck"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -915,7 +959,7 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
-        m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
+        m_Player_BrowseDeck = m_Player.FindAction("BrowseDeck", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1012,7 +1056,7 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Click;
-    private readonly InputAction m_Player_Scroll;
+    private readonly InputAction m_Player_BrowseDeck;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1037,9 +1081,9 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Click => m_Wrapper.m_Player_Click;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Scroll".
+        /// Provides access to the underlying input action "Player/BrowseDeck".
         /// </summary>
-        public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
+        public InputAction @BrowseDeck => m_Wrapper.m_Player_BrowseDeck;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1075,9 +1119,9 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
-            @Scroll.started += instance.OnScroll;
-            @Scroll.performed += instance.OnScroll;
-            @Scroll.canceled += instance.OnScroll;
+            @BrowseDeck.started += instance.OnBrowseDeck;
+            @BrowseDeck.performed += instance.OnBrowseDeck;
+            @BrowseDeck.canceled += instance.OnBrowseDeck;
         }
 
         /// <summary>
@@ -1098,9 +1142,9 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
-            @Scroll.started -= instance.OnScroll;
-            @Scroll.performed -= instance.OnScroll;
-            @Scroll.canceled -= instance.OnScroll;
+            @BrowseDeck.started -= instance.OnBrowseDeck;
+            @BrowseDeck.performed -= instance.OnBrowseDeck;
+            @BrowseDeck.canceled -= instance.OnBrowseDeck;
         }
 
         /// <summary>
@@ -1423,12 +1467,12 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnClick(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Scroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "BrowseDeck" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnScroll(InputAction.CallbackContext context);
+        void OnBrowseDeck(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

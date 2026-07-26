@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     {
         controls = new Player_Inputs();
         controls.Player.Click.performed += OnClick;
+        controls.Player.BrowseDeck.performed += ScrollHand;
     }
 
     private void OnEnable()
@@ -52,8 +53,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ScrollHand()
+    private void ScrollHand(InputAction.CallbackContext context)
     {
+        float value = context.ReadValue<float>();
 
+        if (value > 0) playerHand.Scroll(1);
+        else if (value < 0) playerHand.Scroll(-1);
     }
 }
