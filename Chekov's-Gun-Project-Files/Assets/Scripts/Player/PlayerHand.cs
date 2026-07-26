@@ -19,7 +19,9 @@ public class PlayerHand : MonoBehaviour
 
         currentHand.Add(DeckLogic.instance.currentDeck[0]);
         DeckLogic.instance.currentDeck.RemoveAt(0);
-        Instantiate(cardPrefab, cardStartPos.position + (cardOffset * currentHand.Count), cardStartPos.rotation, cardStartPos);
+
+        GameObject g = Instantiate(cardPrefab, cardStartPos.position + (cardOffset * currentHand.Count), cardStartPos.rotation, cardStartPos);
+        g.GetComponent<MeshRenderer>().material = currentHand[currentHand.Count - 1].texture;
 
         DeckLogic.instance.currentDeckPos++;
         UpdateDisplay();

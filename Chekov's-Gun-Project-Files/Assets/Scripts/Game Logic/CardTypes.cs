@@ -8,4 +8,5 @@ public class CardTypes
     public string cardName;
     public int occurance;
     public string ability;
+    public Material texture;
 }

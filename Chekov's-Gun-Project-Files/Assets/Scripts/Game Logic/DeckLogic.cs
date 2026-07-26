@@ -62,7 +62,7 @@ public class DeckLogic : MonoBehaviour
         Gun.occurance = 1;
         Gun.ability = "Ends Game";
 
-        currentDeck[gunCard] = Gun;
+        //currentDeck[gunCard] = Gun;
 
         gunCard = Random.Range(0, currentDeck.Count + 1);
         currentDeck.Insert(gunCard, Gun);

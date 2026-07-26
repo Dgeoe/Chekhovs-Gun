@@ -451,46 +451,60 @@ MonoBehaviour:
   - cardName: Ace
     occurance: 4
     ability: 'adds 1 or 11 to blackjack count '
+    texture: {fileID: 2100000, guid: 47f21e188d7d5a341bad5327d35c2ae7, type: 2}
   - cardName: 2
     occurance: 4
     ability: 'adds 2 to blackjack count '
+    texture: {fileID: 2100000, guid: a3ada55e8a63e6c4d997845002192571, type: 2}
   - cardName: 3
     occurance: 4
     ability: 'adds 3 to blackjack count '
+    texture: {fileID: 2100000, guid: 0e5ee9a2072e1ff40af6a6ee460fe231, type: 2}
   - cardName: 4
     occurance: 4
     ability: 'adds 4 to blackjack count '
+    texture: {fileID: 2100000, guid: 83b739129f1aa0544b243ae511d4b8cc, type: 2}
   - cardName: 5
     occurance: 4
     ability: adds 5 to blackjack count
+    texture: {fileID: 2100000, guid: f3d809302a9398c499a30affb994a5ed, type: 2}
   - cardName: 6
     occurance: 4
     ability: adds 6 to blackjack count
+    texture: {fileID: 2100000, guid: 80bf13d5d79034c4b83090e163407e95, type: 2}
   - cardName: 7
     occurance: 4
     ability: adds 7 to blackjack count
+    texture: {fileID: 2100000, guid: 19fb5d325bbedd24295910cfc4017096, type: 2}
   - cardName: 8
     occurance: 4
     ability: adds 8 to blackjack count
+    texture: {fileID: 2100000, guid: 6274406793234e44684fbd6835bd814b, type: 2}
   - cardName: 9
     occurance: 4
     ability: adds 9 to blackjack count
+    texture: {fileID: 2100000, guid: 18097b38826c91641a329c864d5a9c11, type: 2}
   - cardName: 10
     occurance: 4
     ability: adds 10 to blackjack count
+    texture: {fileID: 2100000, guid: d739b6fcd49f426418c3f455efa371df, type: 2}
   - cardName: Jack
     occurance: 4
     ability: adds 10 to blackjack count
+    texture: {fileID: 2100000, guid: c711c63a890c93a4187f76bacd769eb2, type: 2}
   - cardName: Queen
     occurance: 4
     ability: adds 10 to blackjack count
+    texture: {fileID: 2100000, guid: c9563306fd6d33c4a873bad1ea6b4c39, type: 2}
   - cardName: King
     occurance: 4
     ability: adds 10 to blackjack count
+    texture: {fileID: 2100000, guid: 950d1c88f0d7a9f4694db18d73425d65, type: 2}
   Gun:
     cardName: 
     occurance: 0
     ability: 
+    texture: {fileID: 2100000, guid: 3424dfeee1c2d4b4abce7d2b3f9882ab, type: 2}
   currentDeck: []
   GunCardPosDisplay: {fileID: 1606938462}
 --- !u!4 &205031881
