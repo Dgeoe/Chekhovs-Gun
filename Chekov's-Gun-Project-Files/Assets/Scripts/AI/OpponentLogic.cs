@@ -4,28 +4,44 @@ using UnityEngine;
 public class OpponentLogic : MonoBehaviour
 {
     [SerializeField] private List<CardTypes> currentHand = new();
+    [SerializeField] private List<GameObject> handVisuals = new();
 
     [Header("Card Designs")]
     [SerializeField] private Transform cardStartPos;
     [SerializeField] private GameObject cardPrefab;
-    private Vector3 cardOffset = new Vector3((float)-0.24, (float)0.05, (float)0.09);
+
+    private Vector3 cardOffset = new Vector3((float)0.39, (float)-0.88, (float)0.1);
 
     public void EnemyTake()
     {
         if (DeckLogic.instance.currentDeck.Count == 0) return;
 
-        currentHand.Add(DeckLogic.instance.currentDeck[0]);
+        // Add card to front of hand
+        currentHand.Insert(0, DeckLogic.instance.currentDeck[0]);
         DeckLogic.instance.currentDeck.RemoveAt(0);
-        Instantiate(cardPrefab, cardStartPos.position + (cardOffset * currentHand.Count), cardStartPos.rotation, cardStartPos);
+
+        // Create visual at the start position
+        GameObject card = Instantiate(cardPrefab, cardStartPos.position, cardStartPos.rotation, cardStartPos);
+        handVisuals.Insert(0, card);
+
+        UpdateHandVisuals();
 
         DeckLogic.instance.currentDeckPos++;
         UpdateDisplay();
+
         TurnCounter.instance.checkTurn();
+    }
+
+    private void UpdateHandVisuals()
+    {
+        for (int i = 0; i < handVisuals.Count; i++)
+        {
+            handVisuals[i].transform.localPosition = cardOffset * i;
+        }
     }
 
     private void UpdateDisplay()
     {
-        //Update GunCardPos
         DeckLogic.instance.DisplayGunCardPos();
     }
 }
