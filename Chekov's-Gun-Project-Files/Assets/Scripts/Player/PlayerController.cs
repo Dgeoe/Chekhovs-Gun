@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerHand playerHand;
     [SerializeField] private Camera eyes;
-    [SerializeField] private bool hasGun;
+    [SerializeField] public bool hasGun;
 
     private Player_Inputs controls;
 

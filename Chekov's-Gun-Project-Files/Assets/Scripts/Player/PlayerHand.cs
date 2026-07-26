@@ -17,6 +17,11 @@ public class PlayerHand : MonoBehaviour
     private Vector3 cardOffset = new Vector3((float)0.39, (float)-0.88, (float)0.1);
     private int selectedIndex = 0;
 
+    [Header("Gun Details")]
+    [SerializeField] private Transform gunPos;
+    [SerializeField] private GameObject gunPrefab;
+    [SerializeField] private PlayerController controller;
+
     public void TakeCard()
     {
         if (!yourTurn || taken || DeckLogic.instance.currentDeck.Count == 0) return;
@@ -36,6 +41,13 @@ public class PlayerHand : MonoBehaviour
         UpdateDisplay();
 
         taken = true;
+
+        //gun Check
+        if (currentHand[0].cardName == "Gun")
+        {
+            controller.hasGun = true;
+            Instantiate(gunPrefab, gunPos.position, gunPrefab.transform.rotation, gunPos);
+        }
     }
 
     public void PlayCard()

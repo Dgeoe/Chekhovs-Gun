@@ -1307,6 +1307,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82ac1e01b1eb63649a91a9fb84eb6d68, type: 3}
   m_PrefabInstance: {fileID: 1339054854}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &684602369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7696407471202758187, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
+  m_PrefabInstance: {fileID: 8373829638632037298}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21271252f4c3b74e9b3f2220ee5f1c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &748474415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,6 +2438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpponentLogic
   currentHand: []
+  handVisuals: []
   cardStartPos: {fileID: 0}
   cardPrefab: {fileID: 0}
 --- !u!4 &1274600644
@@ -3430,18 +3442,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 985779954906130, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 985779954906130, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 985779954906130, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3854578369602906828, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.27
@@ -3481,6 +3481,18 @@ PrefabInstance:
     - target: {fileID: 3854578369602906828, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3916262542683924763, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 684602369}
+    - target: {fileID: 6602842244875873395, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602842244875873395, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 7493884973869220504, guid: af5e77fd3afdad84c9c7f3cc2f25a787, type: 3}
       propertyPath: m_Name
