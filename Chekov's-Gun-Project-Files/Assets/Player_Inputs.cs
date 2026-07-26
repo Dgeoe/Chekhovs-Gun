@@ -127,6 +127,33 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Take"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f05290d-b0ff-4d0e-aac2-ecf243926c55"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Play"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c44bcac-9498-476f-ae6b-974b333a7440"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""End"",
+                    ""type"": ""Button"",
+                    ""id"": ""3cb693a6-5844-4f98-82bc-2669016a81ec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -369,6 +396,39 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
                     ""processors"": ""Scale(factor=-1)"",
                     ""groups"": """",
                     ""action"": ""BrowseDeck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca376080-c946-4329-aca5-3b140cec323d"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Take"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6aab816d-5966-4652-8fe9-c097b892db27"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76ecc46a-d176-4596-9c32-f62f24362c75"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""End"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -960,6 +1020,9 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
         m_Player_BrowseDeck = m_Player.FindAction("BrowseDeck", throwIfNotFound: true);
+        m_Player_Take = m_Player.FindAction("Take", throwIfNotFound: true);
+        m_Player_Play = m_Player.FindAction("Play", throwIfNotFound: true);
+        m_Player_End = m_Player.FindAction("End", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1057,6 +1120,9 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Click;
     private readonly InputAction m_Player_BrowseDeck;
+    private readonly InputAction m_Player_Take;
+    private readonly InputAction m_Player_Play;
+    private readonly InputAction m_Player_End;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1084,6 +1150,18 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/BrowseDeck".
         /// </summary>
         public InputAction @BrowseDeck => m_Wrapper.m_Player_BrowseDeck;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Take".
+        /// </summary>
+        public InputAction @Take => m_Wrapper.m_Player_Take;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Play".
+        /// </summary>
+        public InputAction @Play => m_Wrapper.m_Player_Play;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/End".
+        /// </summary>
+        public InputAction @End => m_Wrapper.m_Player_End;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1122,6 +1200,15 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
             @BrowseDeck.started += instance.OnBrowseDeck;
             @BrowseDeck.performed += instance.OnBrowseDeck;
             @BrowseDeck.canceled += instance.OnBrowseDeck;
+            @Take.started += instance.OnTake;
+            @Take.performed += instance.OnTake;
+            @Take.canceled += instance.OnTake;
+            @Play.started += instance.OnPlay;
+            @Play.performed += instance.OnPlay;
+            @Play.canceled += instance.OnPlay;
+            @End.started += instance.OnEnd;
+            @End.performed += instance.OnEnd;
+            @End.canceled += instance.OnEnd;
         }
 
         /// <summary>
@@ -1145,6 +1232,15 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
             @BrowseDeck.started -= instance.OnBrowseDeck;
             @BrowseDeck.performed -= instance.OnBrowseDeck;
             @BrowseDeck.canceled -= instance.OnBrowseDeck;
+            @Take.started -= instance.OnTake;
+            @Take.performed -= instance.OnTake;
+            @Take.canceled -= instance.OnTake;
+            @Play.started -= instance.OnPlay;
+            @Play.performed -= instance.OnPlay;
+            @Play.canceled -= instance.OnPlay;
+            @End.started -= instance.OnEnd;
+            @End.performed -= instance.OnEnd;
+            @End.canceled -= instance.OnEnd;
         }
 
         /// <summary>
@@ -1473,6 +1569,27 @@ public partial class @Player_Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBrowseDeck(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Take" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTake(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Play" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPlay(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "End" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEnd(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

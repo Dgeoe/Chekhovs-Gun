@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerHand playerHand;
     [SerializeField] private Camera eyes;
+    [SerializeField] private bool hasGun;
 
     private Player_Inputs controls;
 
@@ -13,6 +14,9 @@ public class PlayerController : MonoBehaviour
         controls = new Player_Inputs();
         controls.Player.Click.performed += OnClick;
         controls.Player.BrowseDeck.performed += ScrollHand;
+        controls.Player.Take.performed += TakeCard;
+        controls.Player.Play.performed += PlayCard;
+        controls.Player.End.performed += EndTurn;
     }
 
     private void OnEnable()
@@ -49,6 +53,11 @@ public class PlayerController : MonoBehaviour
             {
                 playerHand.EndTurn();
             }
+            else if (hasGun && hit.transform.gameObject.CompareTag("Player") || hasGun && hit.transform.gameObject.CompareTag("Bot"))
+            {
+                Destroy(hit.transform.gameObject);
+                Debug.Log("Win");
+            }
             else return;
         }
     }
@@ -59,5 +68,20 @@ public class PlayerController : MonoBehaviour
 
         if (value > 0) playerHand.Scroll(1);
         else if (value < 0) playerHand.Scroll(-1);
+    }
+
+    private void TakeCard(InputAction.CallbackContext context)
+    {
+        playerHand.TakeCard();
+    }
+
+    private void PlayCard(InputAction.CallbackContext context)
+    {
+        playerHand.PlayCard();
+    }
+
+    private void EndTurn(InputAction.CallbackContext context)
+    {
+        playerHand.EndTurn();
     }
 }
